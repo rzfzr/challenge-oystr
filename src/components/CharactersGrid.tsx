@@ -12,21 +12,23 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }))
 
-export default function CharactersGrid() {
+export default function CharactersGrid({ characters }: { characters: Character[] }) {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid
                 container
                 spacing={{ xs: 2, md: 3 }}
             >
-                {Array.from(Array(26)).map((_, index) => (
+                {characters.map((character, index) => (
                     <Grid
                         xs={12}
                         sm={6}
                         md={4}
                         lg={3}
                         key={index}>
-                        <Item>xs=2</Item>
+                        <Item>{character.id}</Item>
+                        <Item>{character.name}</Item>
+                        <Item>{character.description}</Item>
                     </Grid>
                 ))}
             </Grid>

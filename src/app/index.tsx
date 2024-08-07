@@ -1,16 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { useCharacters } from '../marvel'
+import CharactersGrid from '../components/CharactersGrid'
 
 export default function App() {
-
     const { data, error, isFetching } = useCharacters()
+    console.log('data', data, error, isFetching)
     if (error && !isFetching) {
         throw error
     }
-
     return (
         <View style={styles.container}>
-            <Text>{JSON.stringify(data)}</Text>
+            <CharactersGrid characters={data} />
         </View>
     )
 }
