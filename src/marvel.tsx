@@ -16,7 +16,7 @@ export const useCharacters = () => useSuspenseQuery({
             ts: String(timestamp),
             apikey: publicKey,
             hash: md5(timestamp + privateKey + publicKey),
-            limit: '10'
+            limit: '12'
         })
 
         const fetchUrl = `${apiUrl}/characters?` + params
