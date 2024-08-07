@@ -7,7 +7,7 @@ const apiUrl = process.env.EXPO_PUBLIC_MARVEL_API_URL
 
 export const useCharacters = () => useSuspenseQuery({
     queryKey: ['characters'],
-    queryFn: async () => {
+    queryFn: async (): Promise<Character[]> => {
         const timestamp = Date.now()
         if (!publicKey || !privateKey || !apiUrl) {
             throw new Error('Missing environment variables for Marvel API')
