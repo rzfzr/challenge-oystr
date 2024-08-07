@@ -3,6 +3,7 @@ import { experimentalStyled as styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Unstable_Grid2'
+import CharacterCard from './CharacterCard'
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -26,9 +27,7 @@ export default function CharactersGrid({ characters }: { characters: Character[]
                         md={4}
                         lg={3}
                         key={index}>
-                        <Item>{character.id}</Item>
-                        <Item>{character.name}</Item>
-                        <Item>{character.description}</Item>
+                        <CharacterCard character={character} />
                     </Grid>
                 ))}
             </Grid>
