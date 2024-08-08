@@ -10,6 +10,8 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { Collapse, styled } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import Chip from '@mui/material/Chip'
+import Stack from '@mui/material/Stack'
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
@@ -44,17 +46,17 @@ export default function CharacterCard({ character }: { character: Character }) {
                     title="green iguana"
                 />
                 <CardContent>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        {/* Secondary Text Above */}
-                    </Typography>
                     <Typography variant="h5" component="div">
                         {character.name}
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        {/* Secondary Text Below */}
                     </Typography>
                     <Typography variant="body2">
-
+                        <Stack direction="row" spacing={1}>
+                            {character.comics.available > 0 && <Chip label="Comics" color="primary" />}
+                            {character.series.available > 0 && <Chip label="Series" color="secondary" />}
+                            {character.stories.available > 0 && <Chip label="Stories" color="error" />}
+                        </Stack>
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
