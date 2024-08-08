@@ -22,7 +22,7 @@ export const useCharacters = (searchQuery?: string, page: number = 1, limit: num
     queryFn: async (): Promise<Character[]> => {
         const params = getDefaultParams()
         params.append('limit', String(limit))
-        params.append('offset', String((page - 1) * limit))
+        params.append('offset', String((page) * limit))
 
         if (searchQuery) {
             params.append('nameStartsWith', searchQuery)
