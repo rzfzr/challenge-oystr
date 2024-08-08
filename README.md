@@ -1,7 +1,6 @@
 # Important information
-
-![screencast](https://bitbucket.org/clicnetcode/challenge-oystr/src/main/media/Pagination.gif)
-![screencast](https://bitbucket.org/clicnetcode/challenge-oystr/src/main/media/Timeline.gif)
+![screencast](https://bitbucket.org/clicnetcode/challenge-oystr/raw/44ba8e8ef288370924fbe8e0a5674fc0776b0dc9/media/Pagination.gif)
+![screencast](https://bitbucket.org/clicnetcode/challenge-oystr/raw/44ba8e8ef288370924fbe8e0a5674fc0776b0dc9/media/Timeline.gif)
 
 ## Features
 
