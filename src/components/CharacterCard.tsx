@@ -44,7 +44,8 @@ export default function CharacterCard({ character }: { character: Character }) {
     return (
         <Box sx={{ minWidth: 275 }}>
             <Card
-                variant="outlined"
+                variant="elevation"
+                elevation={5}
                 sx={{ minHeight: 425 }}
             >
                 <CardMedia

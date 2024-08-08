@@ -17,12 +17,13 @@ export default function CharacterDetails({ character }: { character: Character |
     if (!character) return null
 
     const { data: comics, error, isFetching } = useCharacterComics(character.id, 10)
-    console.log('comics', comics, error, isFetching)
 
     return (
         <View style={styles.container}>
             <Box flexGrow={1}>
                 <Card
+                    variant="elevation"
+                    elevation={5}
                     style={{ width: '100%' }}
                     sx={{ minWidth: 500, maxWidth: 600 }}
                 >
