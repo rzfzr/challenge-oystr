@@ -1,20 +1,16 @@
 import * as React from 'react'
 import { styled, alpha } from '@mui/material/styles'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import InputBase from '@mui/material/InputBase'
-import Badge from '@mui/material/Badge'
 import SearchIcon from '@mui/icons-material/Search'
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import { Toolbar, Box, IconButton, Badge, InputBase } from '@mui/material'
 
 export default function SearchBar({
     searchQuery,
-    setSearchQuery }: {
+    setSearchQuery,
+    favorites }: {
         searchQuery: string,
-        setSearchQuery: (searchQuery: string) => void
+        setSearchQuery: (searchQuery: string) => void,
+        favorites: number
     }) {
     return (
         <Toolbar
@@ -33,7 +29,7 @@ export default function SearchBar({
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
+                    <Badge badgeContent={favorites} color="error">
                         <FavoriteIcon />
                     </Badge>
                 </IconButton>

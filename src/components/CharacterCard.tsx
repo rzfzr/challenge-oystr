@@ -13,6 +13,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import { router } from 'expo-router'
+import { useStore } from '../useStore'
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
@@ -30,6 +31,9 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }))
 
 export default function CharacterCard({ character }: { character: Character }) {
+    const isFavorite = useStore(state => state.isFavorite(character.id))
+    const addFavorite = useStore(state => state.addFavorite)
+    const removeFavorite = useStore(state => state.removeFavorite)
 
     const [expanded, setExpanded] = React.useState(false)
 
@@ -74,7 +78,14 @@ export default function CharacterCard({ character }: { character: Character }) {
                     </Stack>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
+                    <IconButton aria-label="add to favorites"
+                        color={isFavorite ? 'error' : 'default'}
+                        onClick={() => {
+                            isFavorite ?
+                                removeFavorite(character.id) :
+                                addFavorite(character.id)
+
+                        }}>
                         <FavoriteIcon />
                     </IconButton>
                     <Button

@@ -8,7 +8,6 @@ import { useStore } from '../useStore'
 import CustomPagination from '../components/CustomPagination'
 
 export default function App() {
-
     const [searchQuery, setSearchQuery] = useState('')
     const debouncedSearchQuery = useDebounce(searchQuery, 500)
 
@@ -23,12 +22,19 @@ export default function App() {
     }
 
     const addCharacters = useStore(state => state.updateCharacters)
-    if (characters) {
-        addCharacters(characters)
-    }
+    useEffect(() => {
+        if (characters) {
+            addCharacters(characters)
+        }
+    }, [characters, addCharacters])
 
     const navigation = useNavigation()
-    const searchBar = <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+    const favorites = useStore(state => state.favorites)
+
+    const searchBar = <SearchBar
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        favorites={favorites.length} />
 
     useEffect(() => {
         setPage(0)
