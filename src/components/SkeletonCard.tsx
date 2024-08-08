@@ -29,13 +29,11 @@ export default function SkeletonCard() {
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     </Typography>
-                    <Typography variant="body2">
-                        <Stack direction="row" spacing={1}>
-                            <Skeleton variant="text" width={50} />
-                            <Skeleton variant="text" width={50} />
-                            <Skeleton variant="text" width={50} />
-                        </Stack>
-                    </Typography>
+                    <Stack direction="row" spacing={1}>
+                        <Skeleton variant="text" width={50} />
+                        <Skeleton variant="text" width={50} />
+                        <Skeleton variant="text" width={50} />
+                    </Stack>
                 </CardContent>
                 <CardActions disableSpacing>
                     <IconButton aria-label="add to favorites">
