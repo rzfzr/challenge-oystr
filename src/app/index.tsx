@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        overflow: 'scroll',
+        //@ts-ignore - Not sure why it doesn't recognize this property, works fine
+        overflowX: 'hidden',
     },
 })
