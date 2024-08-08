@@ -34,3 +34,29 @@ export const useCharacters = (searchQuery?: string) => useQuery({
         return data?.data?.results || []
     },
 })
+
+
+export const useCharacter = (id: string) => useQuery({
+    queryKey: ['character', id],
+    queryFn: async (): Promise<Character> => {
+        const timestamp = Date.now()
+        if (!publicKey || !privateKey || !apiUrl) {
+            throw new Error('Missing environment variables for Marvel API')
+        }
+        const params = new URLSearchParams({
+            ts: String(timestamp),
+            apikey: publicKey,
+            hash: md5(timestamp + privateKey + publicKey),
+        })
+
+        const fetchUrl = `${apiUrl}/characters/${id}?` + params
+        const response = await fetch(fetchUrl)
+        const data = await response.json()
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Error fetching data')
+        }
+
+        return data?.data?.results[0] || {}
+    },
+})
