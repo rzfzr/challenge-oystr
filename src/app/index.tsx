@@ -5,17 +5,19 @@ import { useEffect, useState } from 'react'
 import { useDebounce } from '../useDebounce'
 import { useNavigation } from 'expo-router'
 import { useStore } from '../useStore'
-import { Box, Button } from '@mui/material'
+import { Box, Button, TablePagination } from '@mui/material'
 
 export default function App() {
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(0)
+    const [rowsPerPage, setRowsPerPage] = useState(12)
     const [searchQuery, setSearchQuery] = useState('')
     const debouncedSearchQuery = useDebounce(searchQuery, 500)
 
     const addCharacters = useStore(state => state.updateCharacters)
 
-    const { data: characters, error, isFetching } = useCharacters(debouncedSearchQuery, page)
-    console.log('data', characters, error, isFetching)
+    const { data: characters, error, isFetching } =
+        useCharacters(debouncedSearchQuery, page, rowsPerPage)
+
 
     if (error && !isFetching) {
         throw error
@@ -34,15 +36,34 @@ export default function App() {
         })
     }, [navigation, searchBar])
 
-    const handleNextPage = () => setPage(prevPage => prevPage + 1)
-    const handlePreviousPage = () => setPage(prevPage => Math.max(prevPage - 1, 1))
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        setPage(newPage)
+    }
+
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        setRowsPerPage(parseInt(event.target.value, 10))
+        setPage(0)
+    }
+
 
     return (<>
         <CharactersGrid characters={characters} />
 
         <Box mt={2}>
-            <Button onClick={handlePreviousPage} disabled={page === 1}>Previous</Button>
-            <Button onClick={handleNextPage}>Next</Button>
+            <TablePagination
+                component="div"
+                count={100}
+                page={page}
+                onPageChange={handleChangePage}
+                rowsPerPage={rowsPerPage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                rowsPerPageOptions={[12, 24, 48]}
+            />
         </Box>
     </>
     )
