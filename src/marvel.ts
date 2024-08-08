@@ -56,3 +56,21 @@ export const useCharacter = (id: string) => useQuery({
         return data?.data?.results[0] || {}
     },
 })
+
+export const useCharacterComics = (id: number, limit: number) => useQuery({
+    queryKey: ['characterComics', id],
+    queryFn: async (): Promise<any[]> => {
+        const params = getDefaultParams()
+        params.append('limit', String(limit))
+
+        const fetchUrl = `${apiUrl}/characters/${id}/comics?` + params
+        const response = await fetch(fetchUrl)
+        const data = await response.json()
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Error fetching data')
+        }
+
+        return data?.data?.results || []
+    },
+})
