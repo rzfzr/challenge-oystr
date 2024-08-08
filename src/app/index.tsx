@@ -10,7 +10,7 @@ export default function App() {
     const [searchQuery, setSearchQuery] = useState('')
     const debouncedSearchQuery = useDebounce(searchQuery, 500)
 
-    const addCharacters = useStore(state => state.addCharacters)
+    const addCharacters = useStore(state => state.updateCharacters)
 
     const { data: characters, error, isFetching } = useCharacters(debouncedSearchQuery)
     console.log('data', characters, error, isFetching)

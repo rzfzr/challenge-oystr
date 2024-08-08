@@ -24,7 +24,8 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }))
 
-export default function CharacterDetails({ character }: { character: Character }) {
+export default function CharacterDetails({ character }: { character: Character | undefined }) {
+    if (!character) return null
     return (
         <Box flexGrow={1}>
             <Card

@@ -4,7 +4,8 @@ import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 
 interface State {
     characterMap: { [key: string]: Character },
-    addCharacters: (characters: Character[]) => void
+    updateCharacters: (characters: Character[]) => void,
+    getCharacter: (id: string) => Character | undefined,
 }
 
 export const useStore = create<State>()(
@@ -12,7 +13,7 @@ export const useStore = create<State>()(
         persist(
             (set) => ({
                 characterMap: {},
-                addCharacters(characters) {
+                updateCharacters(characters) {
                     set((state) => {
                         console.log('adding characters', characters)
                         const newCharacters = characters.reduce((acc, character) => {
@@ -28,6 +29,9 @@ export const useStore = create<State>()(
                             }
                         }
                     })
+                },
+                getCharacter(id) {
+                    return this.characterMap[id]
                 },
             }),
             {
