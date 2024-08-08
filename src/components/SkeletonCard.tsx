@@ -1,4 +1,3 @@
-import { Stack } from 'expo-router'
 import * as React from 'react'
 import {
     Box,
@@ -8,7 +7,8 @@ import {
     CardContent,
     Typography,
     CardActions,
-    IconButton
+    IconButton,
+    Stack
 } from '@mui/material'
 
 export default function SkeletonCard() {
