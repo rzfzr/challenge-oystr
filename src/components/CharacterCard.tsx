@@ -51,13 +51,11 @@ export default function CharacterCard({ character }: { character: Character }) {
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     </Typography>
-                    <Typography variant="body2">
-                        <Stack direction="row" spacing={1}>
-                            {character.comics.available > 0 && <Chip label="Comics" color="primary" />}
-                            {character.series.available > 0 && <Chip label="Series" color="secondary" />}
-                            {character.stories.available > 0 && <Chip label="Stories" color="error" />}
-                        </Stack>
-                    </Typography>
+                    <Stack direction="row" spacing={1}>
+                        {character.comics.available > 0 && <Chip label="Comics" color="primary" />}
+                        {character.series.available > 0 && <Chip label="Series" color="secondary" />}
+                        {character.stories.available > 0 && <Chip label="Stories" color="error" />}
+                    </Stack>
                 </CardContent>
                 <CardActions disableSpacing>
                     <IconButton aria-label="add to favorites">
