@@ -1,28 +1,13 @@
 import * as React from 'react'
-import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import Typography from '@mui/material/Typography'
-import CardMedia from '@mui/material/CardMedia'
-import IconButton, { IconButtonProps } from '@mui/material/IconButton'
-import { styled } from '@mui/material'
-import Chip from '@mui/material/Chip'
-import Stack from '@mui/material/Stack'
-
-interface ExpandMoreProps extends IconButtonProps {
-    expand: boolean
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-    const { expand, ...other } = props
-    return <IconButton {...other} />
-})(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
-}))
+import {
+    Box,
+    Card,
+    CardMedia,
+    CardContent,
+    Typography,
+    Chip,
+    Stack
+} from '@mui/material'
 
 export default function CharacterDetails({ character }: { character: Character | undefined }) {
     if (!character) return null
