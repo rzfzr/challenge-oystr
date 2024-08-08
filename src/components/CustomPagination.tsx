@@ -29,7 +29,7 @@ export default function CustomPagination({
     return <TablePagination
         style={{ margin: 'auto' }}
         component="div"
-        count={100}
+        count={-1}
         page={page}
         onPageChange={handleChangePage}
         rowsPerPage={rowsPerPage}
