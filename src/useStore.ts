@@ -15,7 +15,6 @@ export const useStore = create<State>()(
                 characterMap: {},
                 updateCharacters(characters) {
                     set((state) => {
-                        console.log('adding characters', characters)
                         const newCharacters = characters.reduce((acc, character) => {
                             return {
                                 ...acc,
