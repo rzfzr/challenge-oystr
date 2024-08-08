@@ -1,8 +1,7 @@
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import { useEffect } from 'react'
-import { View, Text } from 'react-native'
 import { useCharacter } from '../../marvel'
-import CharacterCard from '../../components/CharacterCard'
+import CharacterDetails from '../../components/CharacterDetails'
 
 export default function Character() {
     const { id } = useLocalSearchParams()
@@ -15,9 +14,5 @@ export default function Character() {
 
     console.log('data single', character, error, isFetching)
 
-    return (
-        <View>
-            {character && <CharacterCard character={character} />}
-        </View>
-    )
+    return (character && <CharacterDetails character={character} />)
 }
