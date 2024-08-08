@@ -6,29 +6,31 @@ import { useDebounce } from '../useDebounce'
 import { useNavigation } from 'expo-router'
 import { useStore } from '../useStore'
 import { Box, Button, TablePagination } from '@mui/material'
+import CustomPagination from '../components/CustomPagination'
 
 export default function App() {
-    const [page, setPage] = useState(0)
-    const [rowsPerPage, setRowsPerPage] = useState(12)
+
     const [searchQuery, setSearchQuery] = useState('')
     const debouncedSearchQuery = useDebounce(searchQuery, 500)
 
-    const addCharacters = useStore(state => state.updateCharacters)
+    const [page, setPage] = useState(0)
+    const [rowsPerPage, setRowsPerPage] = useState(12)
 
     const { data: characters, error, isFetching } =
         useCharacters(debouncedSearchQuery, page, rowsPerPage)
-
 
     if (error && !isFetching) {
         throw error
     }
 
+    const addCharacters = useStore(state => state.updateCharacters)
     if (characters) {
         addCharacters(characters)
     }
 
     const navigation = useNavigation()
     const searchBar = <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+
     useEffect(() => {
         navigation.setOptions({
             title: 'Marveldex',
@@ -36,35 +38,13 @@ export default function App() {
         })
     }, [navigation, searchBar])
 
-    const handleChangePage = (
-        event: React.MouseEvent<HTMLButtonElement> | null,
-        newPage: number,
-    ) => {
-        setPage(newPage)
-    }
-
-    const handleChangeRowsPerPage = (
-        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-        setRowsPerPage(parseInt(event.target.value, 10))
-        setPage(0)
-    }
-
-
     return (<>
         <CharactersGrid characters={characters} />
-
-        <Box mt={2}>
-            <TablePagination
-                component="div"
-                count={100}
-                page={page}
-                onPageChange={handleChangePage}
-                rowsPerPage={rowsPerPage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                rowsPerPageOptions={[12, 24, 48]}
-            />
-        </Box>
+        <CustomPagination
+            page={page}
+            setPage={setPage}
+            rowsPerPage={rowsPerPage}
+            setRowsPerPage={setRowsPerPage} />
     </>
     )
 }
