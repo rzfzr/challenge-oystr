@@ -1,5 +1,8 @@
 # Important information
 
+![screencast](https://bitbucket.org/clicnetcode/challenge-oystr/src/main/media/Pagination.gif)
+![screencast](https://bitbucket.org/clicnetcode/challenge-oystr/src/main/media/Timeline.gif)
+
 ## Features
 
 1. Responsive UI, shows skeletons when loading information.
