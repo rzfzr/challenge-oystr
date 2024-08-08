@@ -3,14 +3,12 @@ import { useCharacters } from '../marvel'
 import CharactersGrid from '../components/CharactersGrid'
 import SearchBar from '../components/SearchBar'
 import { useEffect, useState } from 'react'
+import { useDebounce } from '../useDebounce'
 
 export default function App() {
     const [searchQuery, setSearchQuery] = useState('')
-    const { data: characters, error, isFetching } = useCharacters(searchQuery)
-
-    useEffect(() => {
-        console.log('Search changed', searchQuery)
-    }, [searchQuery])
+    const debouncedSearchQuery = useDebounce(searchQuery, 500)
+    const { data: characters, error, isFetching } = useCharacters(debouncedSearchQuery)
 
     if (error && !isFetching) {
         throw error
