@@ -43,4 +43,24 @@ export declare global {
             returned: number
         }
     }
+
+    type Comic = {
+        id: number
+        title: string
+        description: string
+        modified: string
+        resourceURI: string
+        thumbnail: {
+            path: string
+            extension: string
+        },
+        dates: {
+            type: string,
+            date: string
+        }[]
+        series: {
+            resourceURI: string
+            name: string
+        }
+    }
 }
