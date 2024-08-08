@@ -12,6 +12,7 @@ import { Collapse, styled } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
+import { router } from 'expo-router'
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
@@ -76,7 +77,10 @@ export default function CharacterCard({ character }: { character: Character }) {
                     <IconButton aria-label="add to favorites">
                         <FavoriteIcon />
                     </IconButton>
-                    <Button size="small">Details</Button>
+                    <Button
+                        size="small"
+                        onClick={() => router.push(`/character/${character.id}`)}
+                    >Details</Button>
 
                     {character.description !== "" &&
                         <ExpandMore
