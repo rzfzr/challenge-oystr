@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import { useDebounce } from '../useDebounce'
 import { useNavigation } from 'expo-router'
 import { useStore } from '../useStore'
-import { Box, Button, TablePagination } from '@mui/material'
 import CustomPagination from '../components/CustomPagination'
 
 export default function App() {
@@ -30,6 +29,10 @@ export default function App() {
 
     const navigation = useNavigation()
     const searchBar = <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+
+    useEffect(() => {
+        setPage(0)
+    }, [debouncedSearchQuery])
 
     useEffect(() => {
         navigation.setOptions({
