@@ -2,18 +2,27 @@ import { StyleSheet, View } from 'react-native'
 import { useCharacters } from '../marvel'
 import CharactersGrid from '../components/CharactersGrid'
 import SearchBar from '../components/SearchBar'
+import { useEffect, useState } from 'react'
 
 export default function App() {
-    const { data, error, isFetching } = useCharacters()
-    console.log('data', data, error, isFetching)
+    const [searchQuery, setSearchQuery] = useState('')
+    const { data: characters, error, isFetching } = useCharacters(searchQuery)
+
+    useEffect(() => {
+        console.log('Search changed', searchQuery)
+    }, [searchQuery])
+
     if (error && !isFetching) {
         throw error
     }
+
+    console.log('data', characters, error, isFetching)
+
     return (
         <>
-            <SearchBar />
+            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             <View style={styles.container}>
-                <CharactersGrid characters={data} />
+                <CharactersGrid characters={characters} />
             </View>
         </>
     )

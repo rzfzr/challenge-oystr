@@ -5,8 +5,8 @@ const publicKey = process.env.EXPO_PUBLIC_MARVEL_PUBLIC_KEY
 const privateKey = process.env.EXPO_PUBLIC_MARVEL_PRIVATE_KEY
 const apiUrl = process.env.EXPO_PUBLIC_MARVEL_API_URL
 
-export const useCharacters = () => useSuspenseQuery({
-    queryKey: ['characters'],
+export const useCharacters = (searchQuery?: string) => useSuspenseQuery({
+    queryKey: ['characters', searchQuery],
     queryFn: async (): Promise<Character[]> => {
         const timestamp = Date.now()
         if (!publicKey || !privateKey || !apiUrl) {
@@ -19,10 +19,18 @@ export const useCharacters = () => useSuspenseQuery({
             limit: '12'
         })
 
+        if (searchQuery) {
+            params.append('nameStartsWith', searchQuery)
+        }
+
         const fetchUrl = `${apiUrl}/characters?` + params
         const response = await fetch(fetchUrl)
         const data = await response.json()
 
-        return data?.data?.results
+        if (!response.ok) {
+            throw new Error(data.message || 'Error fetching data')
+        }
+
+        return data?.data?.results || []
     },
 })

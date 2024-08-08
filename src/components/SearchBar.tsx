@@ -10,7 +10,12 @@ import Badge from '@mui/material/Badge'
 import SearchIcon from '@mui/icons-material/Search'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 
-export default function SearchBar() {
+export default function SearchBar({
+    searchQuery,
+    setSearchQuery }: {
+        searchQuery: string,
+        setSearchQuery: (searchQuery: string) => void
+    }) {
     return (
         <Box sx={{ flexGrow: 0 }}>
             <AppBar position="static">
@@ -30,6 +35,8 @@ export default function SearchBar() {
                         <StyledInputBase
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
