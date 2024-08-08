@@ -38,10 +38,12 @@ export default function CharacterCard({ character }: { character: Character }) {
 
     return (
         <Box sx={{ minWidth: 275 }}>
-            <Card variant="outlined">
-
+            <Card
+                variant="outlined"
+                sx={{ minHeight: 425 }}
+            >
                 <CardMedia
-                    sx={{ height: 140 }}
+                    sx={{ height: 250 }}
                     image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                     title="green iguana"
                 />

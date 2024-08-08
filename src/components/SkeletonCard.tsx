@@ -14,13 +14,15 @@ import {
 export default function SkeletonCard() {
     return (
         <Box sx={{ minWidth: 275 }}>
-            <Card variant="outlined">
-
+            <Card
+                variant="outlined"
+                sx={{ minHeight: 425 }}
+            >
                 <CardMedia
-                    sx={{ height: 140 }}
+                    sx={{ height: 250 }}
                     title="green iguana"
                 >
-                    <Skeleton variant="rectangular" width="100%" height={140} />
+                    <Skeleton variant="rectangular" width="100%" height={250} />
                 </CardMedia>
                 <CardContent>
                     <Typography variant="h5" component="div">
