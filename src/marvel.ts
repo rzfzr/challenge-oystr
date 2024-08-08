@@ -14,14 +14,15 @@ const getDefaultParams = () => {
         ts: String(timestamp),
         apikey: publicKey,
         hash: md5(timestamp + privateKey + publicKey),
-        limit: '12'
     })
 }
 
-export const useCharacters = (searchQuery?: string) => useQuery({
-    queryKey: ['characters', searchQuery],
+export const useCharacters = (searchQuery?: string, page: number = 1, limit: number = 12) => useQuery({
+    queryKey: ['characters', searchQuery, page, limit],
     queryFn: async (): Promise<Character[]> => {
         const params = getDefaultParams()
+        params.append('limit', String(limit))
+        params.append('offset', String((page - 1) * limit))
 
         if (searchQuery) {
             params.append('nameStartsWith', searchQuery)
@@ -38,7 +39,6 @@ export const useCharacters = (searchQuery?: string) => useQuery({
         return data?.data?.results || []
     },
 })
-
 
 export const useCharacter = (id: string) => useQuery({
     queryKey: ['character', id],
