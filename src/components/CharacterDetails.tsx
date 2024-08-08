@@ -24,11 +24,18 @@ export default function CharacterDetails({ character }: { character: Character |
                 <Card
                     variant="elevation"
                     elevation={5}
-                    style={{ width: '100%' }}
-                    sx={{ minWidth: 500, maxWidth: 600 }}
+                    sx={{
+                        minWidth: 500,
+                        width: 600,
+                        maxWidth: 650
+                    }}
                 >
                     <CardMedia
-                        sx={{ height: 600, minWidth: 500, maxWidth: 600 }}
+                        sx={{
+                            minWidth: 500,
+                            height: 600,
+                            maxWidth: 600
+                        }}
                         image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                         title="green iguana"
                     />
@@ -39,8 +46,7 @@ export default function CharacterDetails({ character }: { character: Character |
                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
                             {character.description}
                         </Typography>
-                        <Stack direction="row" spacing={1}>
-
+                        <Stack direction="row" padding={1} spacing={1}>
                             {character.comics.available > 0 &&
                                 <Chip
                                     label={`${character.comics.available} Comics`}
@@ -56,8 +62,20 @@ export default function CharacterDetails({ character }: { character: Character |
                                     label={`${character.stories.available} Stories`}
                                     color="error" />}
                         </Stack>
+
+
+                        {character.comics.available === 0 &&
+                            <Typography variant="h5" component="div">
+                                No comics available
+                            </Typography>
+                        }
+
                         {!comics &&
-                            <Skeleton variant="rectangular" width="100%" height={250} />
+                            <Skeleton
+                                variant="rectangular"
+                                width="100%"
+                                height={200}
+                            />
                         }
                         {comics &&
                             <CustomTimeline comics={comics} />
