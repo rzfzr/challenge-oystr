@@ -18,10 +18,10 @@ export default function App() {
     console.log('data', characters, error, isFetching)
 
     return (
-        <View>
+        <>
             <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             <CharactersGrid characters={characters} />
-        </View>
+        </>
     )
 }
 
