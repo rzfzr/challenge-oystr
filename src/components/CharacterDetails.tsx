@@ -18,6 +18,10 @@ export default function CharacterDetails({ character }: { character: Character |
 
     const { data: comics, error, isFetching } = useCharacterComics(character.id, 10)
 
+    if (error && !isFetching) {
+        throw error
+    }
+
     return (
         <View style={styles.container}>
             <Box flexGrow={1}>
@@ -70,14 +74,14 @@ export default function CharacterDetails({ character }: { character: Character |
                             </Typography>
                         }
 
-                        {!comics &&
+                        {character.comics.available !== 0 && !comics &&
                             <Skeleton
                                 variant="rectangular"
                                 width="100%"
                                 height={200}
                             />
                         }
-                        {comics &&
+                        {character.comics.available !== 0 && comics &&
                             <CustomTimeline comics={comics} />
                         }
                     </CardContent>

@@ -10,6 +10,10 @@ export default function Character() {
     const { id } = useLocalSearchParams()
     const { data, error, isFetching } = useCharacter(id.toString())
 
+    if (error && !isFetching) {
+        throw error
+    }
+
     const character = useStore(state => state.getCharacter(id.toString()))
     const updateCharacters = useStore(state => state.updateCharacters)
 
