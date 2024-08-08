@@ -22,7 +22,8 @@ export default function CharactersGrid({ characters }: { characters: Character[]
                             sm={6}
                             md={4}
                             lg={3}
-                            key={index}>
+                            key={index}
+                            item={true}>
                             <CharacterCard character={character} />
                         </Grid>
                     ))}
