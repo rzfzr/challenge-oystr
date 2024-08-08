@@ -38,7 +38,7 @@ export default function SkeletonCard() {
                     </Stack>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
+                    <IconButton aria-label="add to favorites" disabled>
                         <Skeleton variant="text" width={25} />
                     </IconButton>
                     <Skeleton variant="text" width={75} />
