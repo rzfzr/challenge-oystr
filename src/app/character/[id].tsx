@@ -12,7 +12,9 @@ export default function Character() {
     const updateCharacters = useStore(state => state.updateCharacters)
 
     if (data) {
-        updateCharacters([data])
+        if (character?.modified !== data.modified) {
+            updateCharacters([data])
+        }
     }
 
     const navigation = useNavigation()
