@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { useCharacters } from '../marvel'
 import CharactersGrid from '../components/CharactersGrid'
+import SearchBar from '../components/SearchBar'
 
 export default function App() {
     const { data, error, isFetching } = useCharacters()
@@ -9,9 +10,12 @@ export default function App() {
         throw error
     }
     return (
-        <View style={styles.container}>
-            <CharactersGrid characters={data} />
-        </View>
+        <>
+            <SearchBar />
+            <View style={styles.container}>
+                <CharactersGrid characters={data} />
+            </View>
+        </>
     )
 }
 
