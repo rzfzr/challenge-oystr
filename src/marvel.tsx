@@ -1,11 +1,11 @@
-import { useSuspenseQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import md5 from "md5"
 
 const publicKey = process.env.EXPO_PUBLIC_MARVEL_PUBLIC_KEY
 const privateKey = process.env.EXPO_PUBLIC_MARVEL_PRIVATE_KEY
 const apiUrl = process.env.EXPO_PUBLIC_MARVEL_API_URL
 
-export const useCharacters = (searchQuery?: string) => useSuspenseQuery({
+export const useCharacters = (searchQuery?: string) => useQuery({
     queryKey: ['characters', searchQuery],
     queryFn: async (): Promise<Character[]> => {
         const timestamp = Date.now()

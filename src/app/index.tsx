@@ -1,8 +1,8 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { useCharacters } from '../marvel'
 import CharactersGrid from '../components/CharactersGrid'
 import SearchBar from '../components/SearchBar'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDebounce } from '../useDebounce'
 
 export default function App() {
@@ -20,7 +20,16 @@ export default function App() {
         <>
             <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             <View style={styles.container}>
-                <CharactersGrid characters={characters} />
+
+                {isFetching &&
+                    <CharactersGrid
+                        characters={characters?.length ? characters : []}
+                    />}
+
+                {!isFetching &&
+                    <CharactersGrid
+                        characters={characters?.length ? characters : []}
+                    />}
             </View>
         </>
     )
