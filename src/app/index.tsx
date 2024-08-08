@@ -7,12 +7,6 @@ import { useDebounce } from '../useDebounce'
 import { useNavigation } from 'expo-router'
 
 export default function App() {
-
-    const navigation = useNavigation()
-    useEffect(() => {
-        navigation.setOptions({ title: 'Marveldex' })
-    }, [navigation])
-
     const [searchQuery, setSearchQuery] = useState('')
     const debouncedSearchQuery = useDebounce(searchQuery, 500)
 
@@ -23,11 +17,18 @@ export default function App() {
         throw error
     }
 
+    const navigation = useNavigation()
+    const searchBar = <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+    useEffect(() => {
+        navigation.setOptions({
+            title: 'Marveldex',
+            headerRight: () => searchBar
+        })
+    }, [navigation, searchBar])
+
+
     return (
-        <>
-            <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-            <CharactersGrid characters={characters} />
-        </>
+        <CharactersGrid characters={characters} />
     )
 }
 
