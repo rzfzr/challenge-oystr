@@ -52,9 +52,22 @@ export default function CharacterCard({ character }: { character: Character }) {
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     </Typography>
                     <Stack direction="row" spacing={1}>
-                        {character.comics.available > 0 && <Chip label="Comics" color="primary" />}
-                        {character.series.available > 0 && <Chip label="Series" color="secondary" />}
-                        {character.stories.available > 0 && <Chip label="Stories" color="error" />}
+
+                        {character.comics.available > 0 &&
+                            <Chip
+                                label={`${character.comics.available} Comics`}
+                                color="primary" />}
+
+                        {character.series.available > 0 &&
+                            <Chip
+                                label={`${character.series.available} Series`}
+                                color="secondary" />}
+
+                        {character.stories.available > 0 &&
+                            <Chip
+                                label={`${character.stories.available} Stories`}
+                                color="error" />}
+
                     </Stack>
                 </CardContent>
                 <CardActions disableSpacing>
@@ -62,25 +75,22 @@ export default function CharacterCard({ character }: { character: Character }) {
                         <FavoriteIcon />
                     </IconButton>
                     <Button size="small">Details</Button>
-                    <ExpandMore
-                        expand={expanded}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="show more"
-                    >
-                        <ExpandMoreIcon />
-                    </ExpandMore>
+
+                    {character.description !== "" &&
+                        <ExpandMore
+                            expand={expanded}
+                            onClick={handleExpandClick}
+                            aria-expanded={expanded}
+                            aria-label="show more"
+
+                        >
+                            <ExpandMoreIcon />
+                        </ExpandMore>
+                    }
                 </CardActions>
 
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography paragraph>
-                            Seen in {character.comics.available} comics
-                            <br />
-                            Seen in {character.series.available} series
-                            <br />
-                            Seen in {character.stories.available} stories
-                        </Typography>
                         <Typography paragraph>
                             {character.description}
                         </Typography>
