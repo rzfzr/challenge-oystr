@@ -27,6 +27,7 @@ export default function CharacterDetails({ character }: { character: Character |
                         {character.name}
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        {character.description}
                     </Typography>
                     <Stack direction="row" spacing={1}>
 
