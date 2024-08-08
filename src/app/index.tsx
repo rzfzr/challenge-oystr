@@ -4,6 +4,7 @@ import CharactersGrid from '../components/CharactersGrid'
 import SearchBar from '../components/SearchBar'
 import { useState } from 'react'
 import { useDebounce } from '../useDebounce'
+import SkeletonGrid from '../components/SkeletonGrid'
 
 export default function App() {
     const [searchQuery, setSearchQuery] = useState('')
@@ -22,8 +23,8 @@ export default function App() {
             <View style={styles.container}>
 
                 {isFetching &&
-                    <CharactersGrid
-                        characters={characters?.length ? characters : []}
+                    <SkeletonGrid
+                        amount={12}
                     />}
 
                 {!isFetching &&
