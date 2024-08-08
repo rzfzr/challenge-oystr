@@ -1,4 +1,4 @@
-import { Slot } from 'expo-router'
+import { Stack } from 'expo-router'
 import { Text } from 'react-native'
 import { QueryClient } from '@tanstack/react-query'
 import ErrorBoundary from '../ErrorBoundary'
@@ -25,7 +25,7 @@ export default function AppLayout() {
                 client={queryClient}
                 persistOptions={{ persister: asyncStoragePersister }}
             >
-                <Slot />
+                <Stack />
             </PersistQueryClientProvider>
         </ErrorBoundary>
     )
