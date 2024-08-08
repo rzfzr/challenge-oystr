@@ -11,11 +11,13 @@ export default function Character() {
     const character = useStore(state => state.getCharacter(id.toString()))
     const updateCharacters = useStore(state => state.updateCharacters)
 
-    if (data) {
-        if (character?.modified !== data.modified) {
-            updateCharacters([data])
+    useEffect(() => {
+        if (data) {
+            if (character?.modified !== data.modified) {
+                updateCharacters([data])
+            }
         }
-    }
+    }, [data, character, updateCharacters])
 
     const navigation = useNavigation()
     useEffect(() => {
