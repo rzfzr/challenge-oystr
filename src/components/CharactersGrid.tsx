@@ -7,7 +7,7 @@ import SkeletonCard from './SkeletonCard'
 export default function CharactersGrid({ characters }: { characters: Character[] | undefined }) {
 
     const SkeletonGrid = Array.from(Array(12)).map((_, index) => (
-        <Grid xs={12} sm={6} md={4} lg={3} key={index}>
+        <Grid xs={12} sm={6} md={4} lg={3} key={index} item={true}>
             <SkeletonCard />
         </Grid>
     ))
