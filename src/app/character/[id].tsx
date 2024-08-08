@@ -32,9 +32,6 @@ export default function Character() {
         })
     }, [navigation, character?.name])
 
-    console.log('map', character)
-    console.log('data single', character, error, isFetching)
-
     return ((character || data) &&
         <CharacterDetails character={character || data} />)
 }
